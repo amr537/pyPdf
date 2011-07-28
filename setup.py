@@ -18,6 +18,21 @@ objects rather than file streams, allowing for PDF manipulation in memory.
 It is therefore a useful tool for websites that manage or manipulate PDFs.
 """
 
+ext_modules = []
+
+ext_modules.append(Extension("pyPdf.generic", ["pyPdf\\generic.py"], include_dirs=["."]))
+ext_modules.append(Extension("pyPdf.utils", ["pyPdf\\utils.py"], include_dirs=["."]))
+ext_modules.append(Extension("pyPdf.filters", ["pyPdf\\filters.py"], include_dirs=["."]))
+ext_modules.append(Extension("pyPdf.pdf", ["pyPdf\\pdf.py"], include_dirs=["."]))
+#ext_modules.append(Extension("pyPdf.xmp", ["pyPdf\\xmp.py"], include_dirs=["."]))
+
+setup(
+        name="pyPdf",
+        cmdclass     = {"build_ext": build_ext},
+        script_args  = ["build_ext", "--compiler=mingw32", "--inplace"],
+        ext_modules  = ext_modules
+    )
+
 setup(
         name="pyPdf",
         version="1.13",
